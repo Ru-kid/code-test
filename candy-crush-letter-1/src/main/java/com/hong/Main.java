@@ -1,6 +1,6 @@
 package com.hong;
 
-import com.hong.handle.CandyCrushLetterHandle;
+import com.hong.factory.CandyCrushFactory;
 
 import java.util.Scanner;
 
@@ -36,9 +36,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入包含字母 a-z 的字符串：");
         String input = scanner.nextLine();
+        System.out.println("请输入数字，选择消除模式（1.三消 2.替换）：");
+        String type = scanner.nextLine();
 
-        CandyCrushLetterHandle.remove(input);
-        CandyCrushLetterHandle.replace(input);
+        CandyCrushFactory.configure(input, Integer.parseInt(type));
     }
 
 }

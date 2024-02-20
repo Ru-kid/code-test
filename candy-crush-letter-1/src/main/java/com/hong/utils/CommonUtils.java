@@ -1,5 +1,10 @@
 package com.hong.utils;
 
+import com.hong.constant.GlobalConstant;
+
+import java.util.Map;
+import java.util.TreeMap;
+
 /**
  * @author hongrunhao
  * @description 通用工具类
@@ -63,6 +68,34 @@ public class CommonUtils {
         String upperStr = str.toUpperCase();
         char firstChar = upperStr.charAt(0);
         return upperStr.chars().allMatch(c -> c == firstChar);
+    }
+
+    /**
+     * 记录需要被删除的字符串的起始下标
+     *
+     * @param input
+     * @return
+     */
+    public static Map<Integer, Integer> recordRemoveIndex(String input) {
+        int count = 1;
+        Map<Integer, Integer> removeIndexMap = new TreeMap<>();
+
+        if (CommonUtils.isAllCharSame(input)) {
+            removeIndexMap.put(0, input.length());
+            return removeIndexMap;
+        }
+
+        for (int i = 0, strLength = input.length(); i < strLength - 1; i++) {
+            if (input.charAt(i) == input.charAt(i + 1)) {
+                count++;
+            } else {
+                if (count >= GlobalConstant.CHAR_REP_NUM) {
+                    removeIndexMap.put(i + 1 - count, i + 1);
+                }
+                count = 1;
+            }
+        }
+        return removeIndexMap;
     }
 
 }
