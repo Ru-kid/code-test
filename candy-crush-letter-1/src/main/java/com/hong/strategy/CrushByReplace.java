@@ -36,11 +36,12 @@ public class CrushByReplace implements CrushStrategy {
             output.replace(entry.getKey(), entry.getValue(), repStr);
         }
 
-        if (!input.equals(output.toString())) {
-            System.out.println("-> " + output + ", " + subStr + " is replaced by " + repStr);
-            if (output.length() >= GlobalConstant.CHAR_REP_NUM) {
-                execute(output.toString());
+        String[] strArray = new String[]{input, output.toString(), subStr, repStr};
+        action(strArray, (String[] paramArray) -> {
+            System.out.println("-> " + paramArray[1] + ", " + paramArray[2] + " is replaced by " + paramArray[3]);
+            if (paramArray[1].length() >= GlobalConstant.CHAR_REP_NUM && !paramArray[0].equals(paramArray[1])) {
+                execute(paramArray[1]);
             }
-        }
+        });
     }
 }

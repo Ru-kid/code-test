@@ -27,11 +27,12 @@ public class CrushByRemove implements CrushStrategy {
             output.replace(entry.getKey(), entry.getValue(), "");
         }
 
-        if (!input.equals(output.toString())) {
-            System.out.println("-> " + output);
-            if (output.length() >= GlobalConstant.CHAR_REP_NUM) {
-                execute(output.toString());
+        String[] strArray = new String[]{input, output.toString()};
+        action(strArray, (String[] paramArray) -> {
+            System.out.println("-> " + paramArray[1]);
+            if (paramArray[1].length() >= GlobalConstant.CHAR_REP_NUM && !paramArray[0].equals(paramArray[1])) {
+                execute(paramArray[1]);
             }
-        }
+        });
     }
 }
