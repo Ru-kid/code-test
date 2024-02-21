@@ -2,7 +2,7 @@ package com.hong.enums;
 
 /**
  * @author hongrunhao
- * @description 消除形式
+ * @description
  * @date 2024/02/20 020
  */
 public enum CrushTypeEnum {
@@ -26,7 +26,7 @@ public enum CrushTypeEnum {
                 return crushTypeEnum;
             }
         }
-        throw new IllegalArgumentException("请选择规定的数字");
+        throw new IllegalArgumentException("Please select the required number!");
     }
 
 }

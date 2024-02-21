@@ -7,59 +7,13 @@ import java.util.TreeMap;
 
 /**
  * @author hongrunhao
- * @description 通用工具类
+ * @description general utility class
  * @date 2024/02/20 019
  */
 public class CommonUtils {
-    private static CommonUtils instance;
-
-    private CommonUtils() {
-        // 私有构造函数
-    }
-
-    public static CommonUtils getInstance() {
-        if (instance == null) {
-            instance = new CommonUtils();
-        }
-        return instance;
-    }
 
     /**
-     * 判断字符是否连续重复三次
-     *
-     * @param str
-     * @return
-     */
-    public boolean hasConsecutiveThreeDuplicates(String str) {
-        char[] charArray = str.toCharArray();
-        for (int i = 0; i < charArray.length - 2; i++) {
-            if (charArray[i] == charArray[i + 1] && charArray[i] == charArray[i + 2]) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 获取前一个字母
-     *
-     * @param letter
-     * @return
-     */
-    private static char getPreviousLetter(char letter) {
-        if (Character.isLetter(letter)) {
-            // 将字符转换为大写形式以确保处理的是字母
-            letter = Character.toUpperCase(letter);
-            // 将字符转换为 ASCII 值，减去 1，再转回字符
-            return (char) (letter - 1);
-        } else {
-            // 非字母字符，返回原字符
-            return letter;
-        }
-    }
-
-    /**
-     * 判断字符串的所有字符是否都是相同的字母
+     * determines whether all characters of a string are the same letters
      *
      * @param str
      * @return
@@ -71,7 +25,7 @@ public class CommonUtils {
     }
 
     /**
-     * 记录需要被删除的字符串的起始下标
+     * record the starting subscript of the string that needs to be deleted
      *
      * @param input
      * @return
@@ -85,14 +39,17 @@ public class CommonUtils {
             return removeIndexMap;
         }
 
-        for (int i = 0, strLength = input.length(); i < strLength - 1; i++) {
-            if (input.charAt(i) == input.charAt(i + 1)) {
+        for (int i = 1, strLength = input.length(); i < strLength; i++) {
+            if (input.charAt(i - 1) == input.charAt(i)) {
                 count++;
             } else {
                 if (count >= GlobalConstant.CHAR_REP_NUM) {
-                    removeIndexMap.put(i + 1 - count, i + 1);
+                    removeIndexMap.put(i - count, i);
                 }
                 count = 1;
+            }
+            if (count >= GlobalConstant.CHAR_REP_NUM) {
+                removeIndexMap.put(i + 1 - count, i + 1);
             }
         }
         return removeIndexMap;

@@ -7,7 +7,7 @@ package com.hong.constant;
  */
 public class GlobalConstant {
 
-    //连续相同字符的重复数
+    //the number of repetitions of the same character in a row
     public static final int CHAR_REP_NUM = 3;
     //ASCII A
     public static final char ASCII_A = 65;

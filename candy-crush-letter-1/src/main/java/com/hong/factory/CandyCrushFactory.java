@@ -1,8 +1,8 @@
 package com.hong.factory;
 
 import com.hong.enums.CrushTypeEnum;
-import com.hong.strategy.CrushByRemove;
-import com.hong.strategy.CrushByReplace;
+import com.hong.strategy.impl.CrushByRemove;
+import com.hong.strategy.impl.CrushByReplace;
 import com.hong.strategy.CrushStrategy;
 
 /**
@@ -12,7 +12,7 @@ import com.hong.strategy.CrushStrategy;
  */
 public class CandyCrushFactory {
 
-    public static void configure(String str, Integer strategy) {
+    public static String configure(String str, Integer strategy) {
         CrushStrategy crushStrategy;
         CrushTypeEnum crushType = CrushTypeEnum.getEnumByCode(strategy);
 
@@ -27,7 +27,7 @@ public class CandyCrushFactory {
                 throw new IllegalStateException("Unexpected value: " + crushType);
         }
 
-        crushStrategy.execute(str);
+        return crushStrategy.execute(str);
     }
 
 }

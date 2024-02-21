@@ -6,37 +6,16 @@ import java.util.Scanner;
 
 /**
  * @author hongrunhao
- * @description For a given string that only contains alphabet characters a-z, if 3 or more consecutive
- * characters are identical, remove them from the string. Repeat this process until
- * there is no more than 3 identical characters sitting besides each other.
- * <p>
- * Example:
- * Input: aabcccbbad
- * Output:
- * -> aabbbad
- * -> aaad
- * -> d
- * <p>
- * Stage 2 - advanced requirement
- * Instead of removing the consecutively identical characters, replace them with a
- * single character that comes before it alphabetically.
- * Example:
- * ccc -> b
- * bbb -> a
- * Input: abcccbad
- * Output:
- * -> abbbad, ccc is replaced by b
- * -> aaad, bbb is replaced by a
- * -> d
+ * @description
  * @date 2024/02/20 019
  */
 public class Main {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("请输入包含字母 a-z 的字符串：");
+        System.out.println("Please enter a string containing the letters a-z：");
         String input = scanner.nextLine();
-        System.out.println("请输入数字，选择消除模式（1.三消 2.替换）：");
+        System.out.println("Please enter the number and select the elimination mode (1.match 3 / 2.replace)：");
         String type = scanner.nextLine();
 
         CandyCrushFactory.configure(input, Integer.parseInt(type));
